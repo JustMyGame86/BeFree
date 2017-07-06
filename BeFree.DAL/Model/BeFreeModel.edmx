@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BeFreeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="latitude" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="longitude" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="categoryid" Type="int" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propertyid" Type="int" />
+          <Property Name="rating" Type="int" />
+          <Property Name="comment" Type="varchar" MaxLength="400" />
+          <Property Name="ratedon" Type="date" />
+        </EntityType>
+        <Association Name="FK__Property__catego__1273C1CD">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__property__15502E78">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="propertyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BeFreeModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Property__catego__1273C1CD" Association="Self.FK__Property__catego__1273C1CD">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__property__15502E78" Association="Self.FK__Review__property__15502E78">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BeFreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BeFreeEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Category" EntityType="BeFreeModel.Category" />
+          <EntitySet Name="Property" EntityType="BeFreeModel.Property" />
+          <EntitySet Name="Review" EntityType="BeFreeModel.Review" />
+          <AssociationSet Name="FK__Property__catego__1273C1CD" Association="BeFreeModel.FK__Property__catego__1273C1CD">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__property__15502E78" Association="BeFreeModel.FK__Review__property__15502E78">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Property" Relationship="BeFreeModel.FK__Property__catego__1273C1CD" FromRole="Category" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="longitude" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="categoryid" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="BeFreeModel.FK__Property__catego__1273C1CD" FromRole="Property" ToRole="Category" />
+          <NavigationProperty Name="Review" Relationship="BeFreeModel.FK__Review__property__15502E78" FromRole="Property" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="propertyid" Type="Int32" />
+          <Property Name="rating" Type="Int32" />
+          <Property Name="comment" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ratedon" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Property" Relationship="BeFreeModel.FK__Review__property__15502E78" FromRole="Review" ToRole="Property" />
+        </EntityType>
+        <Association Name="FK__Property__catego__1273C1CD">
+          <End Type="BeFreeModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="BeFreeModel.Property" Role="Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__property__15502E78">
+          <End Type="BeFreeModel.Property" Role="Property" Multiplicity="0..1" />
+          <End Type="BeFreeModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="propertyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BeFreeModelStoreContainer" CdmEntityContainer="BeFreeEntities" >
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="BeFreeModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Property">
+            <EntityTypeMapping TypeName="BeFreeModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Review">
+            <EntityTypeMapping TypeName="BeFreeModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="ratedon" ColumnName="ratedon" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="propertyid" ColumnName="propertyid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
