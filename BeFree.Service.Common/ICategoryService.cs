@@ -1,16 +1,11 @@
 ﻿using BeFree.Model.Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BeFree.Repository.Common
+namespace BeFree.Service.Common
 {
-    public interface ICategoryRepository
+    public interface ICategoryService
     {
-        Task<int> AddAsync(ICategory category);
-
         Task<IEnumerable<ICategory>> GetAsync();
         Task<ICategory> GetAsync(int id);
     }

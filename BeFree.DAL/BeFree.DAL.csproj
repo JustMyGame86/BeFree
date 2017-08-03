@@ -86,7 +86,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BeFree.Model.Common\BeFree.Model.Common.csproj">
+      <Project>{3A30C3D7-D3D6-49B3-B0C9-6E8C0E6F98FD}</Project>
+      <Name>BeFree.Model.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Model\BeFreeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
