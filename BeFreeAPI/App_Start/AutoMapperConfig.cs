@@ -1,4 +1,5 @@
-﻿using BeFree.Model.Common;
+﻿using BeFree.Model;
+using BeFree.Model.Common;
 using BeFreeAPI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace BeFreeAPI
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<CategoryViewModel, ICategory>().ReverseMap();
+                cfg.CreateMap<CategoryViewModel, CategoryPOCO>().ReverseMap();
             });
         }
     }
