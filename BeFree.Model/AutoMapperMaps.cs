@@ -12,16 +12,15 @@ namespace BeFree.Model
     {
         public static void Initialize()
         {
-            //AutoMapper.Mapper.CreateMap<Category, CategoryPOCO>().ReverseMap();
-            //AutoMapper.Mapper.CreateMap<Category, ICategory>().ReverseMap();
-            //AutoMapper.Mapper.CreateMap<ICategory, CategoryPOCO>().ReverseMap();
-
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Category, CategoryPOCO>().ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.id)).ReverseMap();
-                cfg.CreateMap<Category, ICategory>().ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.id)).ReverseMap();
+                cfg.CreateMap<Category, CategoryPOCO>().ReverseMap();
+                cfg.CreateMap<Category, ICategory>().ReverseMap();
                 cfg.CreateMap<ICategory, CategoryPOCO>().ReverseMap();
             });
+
+            Console.WriteLine(AutoMapper.Mapper.Configuration.GetAllTypeMaps());
+            //AutoMapper.Mapper.Configuration.GetAllTypeMaps();
         }
     }
 

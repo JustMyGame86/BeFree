@@ -27,21 +27,11 @@ namespace BeFree.Repository
 
         public virtual async Task<IEnumerable<ICategory>> GetAsync()
         {
-            //return Mapper.Map<IEnumerable<CategoryPOCO>>(await Repository.GetAsync<Category>());
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Category, CategoryPOCO>().ReverseMap();
-            });
             return Mapper.Map<IEnumerable<CategoryPOCO>>(await Repository.GetWhere<Category>().ToListAsync());
         }
 
         public virtual async Task<ICategory> GetAsync(int id)
         {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Category, CategoryPOCO>().ReverseMap();
-                cfg.CreateMap<ICategory, CategoryPOCO>().ReverseMap();
-            });
             var category = await Repository.GetWhere<Category>().Where(n => n.id == id).FirstOrDefaultAsync();
             var catpoco = Mapper.Map<CategoryPOCO>(category);
             return catpoco;

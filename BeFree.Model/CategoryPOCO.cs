@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeFree.Model
 {
-    [KnownType(typeof(CategoryPOCO))]
+    //[KnownType(typeof(CategoryPOCO))]
     public class CategoryPOCO : ICategory
     {
         public int Id { get; set; }
