@@ -8,7 +8,7 @@ namespace BeFreeAPI.Controllers
 {
     public class CategoryController : ApiController
     {
-        protected ICategoryService Service { get; set; }
+        protected ICategoryService Service { get; private set; }
         public CategoryController(ICategoryService service)
         {
             Service = service;

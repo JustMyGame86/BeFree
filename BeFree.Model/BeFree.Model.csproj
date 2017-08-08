@@ -50,6 +50,7 @@
     <Compile Include="AutoMapperMaps.cs" />
     <Compile Include="CategoryPOCO.cs" />
     <Compile Include="DIModule.cs" />
+    <Compile Include="ModelProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

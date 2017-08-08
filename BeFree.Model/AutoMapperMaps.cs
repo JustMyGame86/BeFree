@@ -18,9 +18,6 @@ namespace BeFree.Model
                 cfg.CreateMap<Category, ICategory>().ReverseMap();
                 cfg.CreateMap<ICategory, CategoryPOCO>().ReverseMap();
             });
-
-            Console.WriteLine(AutoMapper.Mapper.Configuration.GetAllTypeMaps());
-            //AutoMapper.Mapper.Configuration.GetAllTypeMaps();
         }
     }
 
