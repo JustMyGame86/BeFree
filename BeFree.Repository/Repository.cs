@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,32 +18,56 @@ namespace BeFree.Repository
             DbContext = new DAL.Model.BeFreeEntities();
         }
 
-        public Task<int> AddAsync<T>(T entity) where T : class
+        public virtual async Task<int> AddAsync<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            if (dbEntityEntry.State != EntityState.Detached)
+            {
+                dbEntityEntry.State = EntityState.Added;
+            }
+            else
+            {
+                DbContext.Set<T>().Add(entity);
+            }
+            return await DbContext.SaveChangesAsync();
         }
 
-        public Task<int> DeleteAsync<T>(T entity) where T : class
+        public virtual async Task<int> DeleteAsync<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            if (dbEntityEntry.State != EntityState.Deleted)
+            {
+                dbEntityEntry.State = EntityState.Deleted;
+            }
+            else
+            {
+                DbContext.Set<T>().Attach(entity);
+                DbContext.Set<T>().Remove(entity);
+            }
+            return await DbContext.SaveChangesAsync();
         }
 
-        public Task<int> DeleteAsync<T>(Guid id) where T : class
+        public virtual async Task<int> DeleteAsync<T>(Guid id) where T : class
         {
-            throw new NotImplementedException();
+            var entity = await GetByIDAsync<T>(id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException("Entity with specified id not found.");
+            }
+            return await DeleteAsync<T>(entity);
         }
 
-        public Task<List<T>> GetAsync<T>() where T : class
+        public virtual Task<List<T>> GetAsync<T>() where T : class
         {
             return DbContext.Set<T>().ToListAsync();
         }
 
-        public Task<T> GetByIDAsync<T>(Guid id) where T : class
+        public virtual async Task<T> GetByIDAsync<T>(Guid id) where T : class
         {
-            throw new NotImplementedException();
+            return await DbContext.Set<T>().FindAsync(id);
         }
 
-        public IQueryable<T> GetWhere<T>() where T : class
+        public virtual IQueryable<T> GetWhere<T>() where T : class
         {
             return DbContext.Set<T>();
         }

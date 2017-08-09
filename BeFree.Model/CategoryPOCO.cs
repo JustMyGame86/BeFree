@@ -11,7 +11,7 @@ namespace BeFree.Model
     //[KnownType(typeof(CategoryPOCO))]
     public class CategoryPOCO : ICategory
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
     }
 }

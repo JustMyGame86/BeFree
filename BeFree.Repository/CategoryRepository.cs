@@ -22,7 +22,7 @@ namespace BeFree.Repository
 
         public Task<int> AddAsync(ICategory category)
         {
-            throw new NotImplementedException();
+            return Repository.AddAsync<Category>(Mapper.Map<Category>(category));
         }
 
         public virtual async Task<IEnumerable<ICategory>> GetAsync()
@@ -30,7 +30,7 @@ namespace BeFree.Repository
             return Mapper.Map<IEnumerable<CategoryPOCO>>(await Repository.GetWhere<Category>().ToListAsync());
         }
 
-        public virtual async Task<ICategory> GetAsync(int id)
+        public virtual async Task<ICategory> GetAsync(Guid id)
         {
             var category = await Repository.GetWhere<Category>().Where(n => n.id == id).FirstOrDefaultAsync();
             var catpoco = Mapper.Map<CategoryPOCO>(category);

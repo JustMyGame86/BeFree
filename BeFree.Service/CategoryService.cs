@@ -21,9 +21,14 @@ namespace BeFree.Service
             return Repository.GetAsync();
         }
 
-        public Task<ICategory> GetAsync(int id)
+        public Task<ICategory> GetAsync(Guid id)
         {
             return Repository.GetAsync(id);
+        }
+
+        public Task<int> AddAsync(ICategory category)
+        {
+            return Repository.AddAsync(category);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BeFree.Model.Common
 {
     public interface ICategory
     {
-        int Id { get; set; }
+        Guid Id { get; set; }
         string Name { get; set; }
     }
 }

@@ -20,12 +20,12 @@ namespace BeFree.DAL.Model
             this.Review = new HashSet<Review>();
         }
     
-        public int id { get; set; }
+        public System.Guid id { get; set; }
         public string name { get; set; }
         public string address { get; set; }
         public Nullable<decimal> latitude { get; set; }
         public Nullable<decimal> longitude { get; set; }
-        public Nullable<int> categoryid { get; set; }
+        public Nullable<System.Guid> categoryid { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

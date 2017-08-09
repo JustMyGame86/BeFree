@@ -9,31 +9,31 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="30" />
           <Property Name="address" Type="varchar" MaxLength="100" />
           <Property Name="latitude" Type="decimal" Precision="18" Scale="9" />
           <Property Name="longitude" Type="decimal" Precision="18" Scale="9" />
-          <Property Name="categoryid" Type="int" />
+          <Property Name="categoryid" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="propertyid" Type="int" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="propertyid" Type="uniqueidentifier" />
           <Property Name="rating" Type="int" />
           <Property Name="comment" Type="varchar" MaxLength="400" />
           <Property Name="ratedon" Type="date" />
         </EntityType>
-        <Association Name="FK__Property__catego__1273C1CD">
+        <Association Name="FK__Property__catego__38996AB5">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Property" Type="Self.Property" Multiplicity="*" />
           <ReferentialConstraint>
@@ -45,7 +45,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Review__property__15502E78">
+        <Association Name="FK__Review__property__3B75D760">
           <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -61,11 +61,11 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Property__catego__1273C1CD" Association="Self.FK__Property__catego__1273C1CD">
+          <AssociationSet Name="FK__Property__catego__38996AB5" Association="Self.FK__Property__catego__38996AB5">
             <End Role="Category" EntitySet="Category" />
             <End Role="Property" EntitySet="Property" />
           </AssociationSet>
-          <AssociationSet Name="FK__Review__property__15502E78" Association="Self.FK__Review__property__15502E78">
+          <AssociationSet Name="FK__Review__property__3B75D760" Association="Self.FK__Review__property__3B75D760">
             <End Role="Property" EntitySet="Property" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
@@ -78,11 +78,11 @@
           <EntitySet Name="Category" EntityType="BeFreeModel.Category" />
           <EntitySet Name="Property" EntityType="BeFreeModel.Property" />
           <EntitySet Name="Review" EntityType="BeFreeModel.Review" />
-          <AssociationSet Name="FK__Property__catego__1273C1CD" Association="BeFreeModel.FK__Property__catego__1273C1CD">
+          <AssociationSet Name="FK__Property__catego__38996AB5" Association="BeFreeModel.FK__Property__catego__38996AB5">
             <End Role="Category" EntitySet="Category" />
             <End Role="Property" EntitySet="Property" />
           </AssociationSet>
-          <AssociationSet Name="FK__Review__property__15502E78" Association="BeFreeModel.FK__Review__property__15502E78">
+          <AssociationSet Name="FK__Review__property__3B75D760" Association="BeFreeModel.FK__Review__property__3B75D760">
             <End Role="Property" EntitySet="Property" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
@@ -91,35 +91,35 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Guid" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Property" Relationship="BeFreeModel.FK__Property__catego__1273C1CD" FromRole="Category" ToRole="Property" />
+          <NavigationProperty Name="Property" Relationship="BeFreeModel.FK__Property__catego__38996AB5" FromRole="Category" ToRole="Property" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Guid" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="latitude" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="longitude" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="categoryid" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="BeFreeModel.FK__Property__catego__1273C1CD" FromRole="Property" ToRole="Category" />
-          <NavigationProperty Name="Review" Relationship="BeFreeModel.FK__Review__property__15502E78" FromRole="Property" ToRole="Review" />
+          <Property Name="categoryid" Type="Guid" />
+          <NavigationProperty Name="Category" Relationship="BeFreeModel.FK__Property__catego__38996AB5" FromRole="Property" ToRole="Category" />
+          <NavigationProperty Name="Review" Relationship="BeFreeModel.FK__Review__property__3B75D760" FromRole="Property" ToRole="Review" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="propertyid" Type="Int32" />
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="propertyid" Type="Guid" />
           <Property Name="rating" Type="Int32" />
           <Property Name="comment" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="ratedon" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Property" Relationship="BeFreeModel.FK__Review__property__15502E78" FromRole="Review" ToRole="Property" />
+          <NavigationProperty Name="Property" Relationship="BeFreeModel.FK__Review__property__3B75D760" FromRole="Review" ToRole="Property" />
         </EntityType>
-        <Association Name="FK__Property__catego__1273C1CD">
+        <Association Name="FK__Property__catego__38996AB5">
           <End Type="BeFreeModel.Category" Role="Category" Multiplicity="0..1" />
           <End Type="BeFreeModel.Property" Role="Property" Multiplicity="*" />
           <ReferentialConstraint>
@@ -131,7 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Review__property__15502E78">
+        <Association Name="FK__Review__property__3B75D760">
           <End Type="BeFreeModel.Property" Role="Property" Multiplicity="0..1" />
           <End Type="BeFreeModel.Review" Role="Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -143,7 +143,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

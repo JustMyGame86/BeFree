@@ -12,6 +12,6 @@ namespace BeFree.Repository.Common
         Task<int> AddAsync(ICategory category);
 
         Task<IEnumerable<ICategory>> GetAsync();
-        Task<ICategory> GetAsync(int id);
+        Task<ICategory> GetAsync(Guid id);
     }
 }
