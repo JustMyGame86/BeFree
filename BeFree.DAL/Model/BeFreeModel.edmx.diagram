@@ -8,8 +8,8 @@
         <EntityTypeShape EntityType="BeFreeModel.Category" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="BeFreeModel.Property" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="BeFreeModel.Review" Width="1.5" PointX="5.25" PointY="1.125" />
-        <AssociationConnector Association="BeFreeModel.FK__Property__catego__38996AB5" />
-        <AssociationConnector Association="BeFreeModel.FK__Review__property__3B75D760" />
+        <AssociationConnector Association="BeFreeModel.FK__Property__catego__403A8C7D" />
+        <AssociationConnector Association="BeFreeModel.FK__Review__property__4316F928" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

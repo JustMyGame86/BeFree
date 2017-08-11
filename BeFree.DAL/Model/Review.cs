@@ -15,10 +15,10 @@ namespace BeFree.DAL.Model
     public partial class Review
     {
         public System.Guid id { get; set; }
-        public Nullable<System.Guid> propertyid { get; set; }
-        public Nullable<int> rating { get; set; }
+        public System.Guid propertyid { get; set; }
+        public int rating { get; set; }
         public string comment { get; set; }
-        public Nullable<System.DateTime> ratedon { get; set; }
+        public System.DateTime ratedon { get; set; }
     
         public virtual Property Property { get; set; }
     }

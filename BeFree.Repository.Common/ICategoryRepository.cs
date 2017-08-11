@@ -10,7 +10,6 @@ namespace BeFree.Repository.Common
     public interface ICategoryRepository
     {
         Task<int> AddAsync(ICategory category);
-
         Task<IEnumerable<ICategory>> GetAsync();
         Task<ICategory> GetAsync(Guid id);
     }
