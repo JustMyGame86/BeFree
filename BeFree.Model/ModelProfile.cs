@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using BeFree.DAL.Model;
 using BeFree.Model.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeFree.Model
 {
@@ -16,6 +11,14 @@ namespace BeFree.Model
             CreateMap<Category, CategoryPOCO>().ReverseMap();
             CreateMap<Category, ICategory>().ReverseMap();
             CreateMap<ICategory, CategoryPOCO>().ReverseMap();
+
+            CreateMap<Property, PropertyPOCO>().ReverseMap();
+            CreateMap<Property, IProperty>().ReverseMap();
+            CreateMap<PropertyPOCO, IProperty>().ReverseMap();
+
+            CreateMap<Review, ReviewPOCO>().ReverseMap();
+            CreateMap<Review, IReview>().ReverseMap();
+            CreateMap<IReview, ReviewPOCO>().ReverseMap();
         }
     }
 }

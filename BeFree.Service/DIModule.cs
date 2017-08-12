@@ -8,6 +8,8 @@ namespace BeFree.Service
         public override void Load()
         {
             Bind<ICategoryService>().To<CategoryService>();
+            Bind<IPropertyService>().To<PropertyService>();
+            Bind<IReviewService>().To<ReviewService>();
         }
     }
 }

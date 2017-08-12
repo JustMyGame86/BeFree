@@ -9,6 +9,8 @@ namespace BeFree.Repository
         {
             Bind<ICategoryRepository>().To<CategoryRepository>();
             Bind<IRepository>().To<Repository>();
+            Bind<IPropertyRepository>().To<PropertyRepository>();
+            Bind<IReviewRepository>().To<ReviewRepository>();
         }
     }
 }

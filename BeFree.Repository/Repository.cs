@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,7 +30,16 @@ namespace BeFree.Repository
             {
                 DbContext.Set<T>().Add(entity);
             }
-            return await DbContext.SaveChangesAsync();
+            try
+            {
+                return await DbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message);
+                throw;
+            }
+            
         }
 
         public virtual async Task<int> DeleteAsync<T>(T entity) where T : class

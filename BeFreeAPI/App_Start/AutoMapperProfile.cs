@@ -9,8 +9,14 @@ namespace BeFreeAPI
     {
         public AutoMapperProfile()
         {
-           CreateMap<CategoryViewModel, ICategory>().ReverseMap();
-           CreateMap<CategoryViewModel, CategoryPOCO>().ReverseMap();
+            CreateMap<CategoryViewModel, ICategory>().ReverseMap();
+            CreateMap<CategoryViewModel, CategoryPOCO>().ReverseMap();
+
+            CreateMap<PropertyViewModel, IProperty>().ReverseMap();
+            CreateMap<PropertyViewModel, PropertyPOCO>().ReverseMap();
+
+            CreateMap<ReviewViewModel, IReview>().ReverseMap();
+            CreateMap<ReviewViewModel, ReviewPOCO>().ReverseMap();
         }
     }
 }

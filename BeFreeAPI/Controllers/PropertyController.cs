@@ -1,39 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using AutoMapper;
+using BeFree.Model.Common;
+using BeFree.Service.Common;
+using BeFreeAPI.ViewModels;
+using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace BeFreeAPI.Controllers
 {
     public class PropertyController : ApiController
     {
-        // GET: api/Property
-        public IEnumerable<string> Get()
+        protected IPropertyService Service { get; private set; }
+
+        public PropertyController(IPropertyService service)
         {
-            return new string[] { "value1", "value2" };
+            Service = service;
         }
 
-        // GET: api/Property/5
-        public string Get(int id)
+        [HttpGet]
+        public async Task<IHttpActionResult> Index()
         {
-            return "value";
+            var properties = await Service.GetAsync();
+
+            return Ok(new { results = properties });
         }
 
-        // POST: api/Property
-        public void Post([FromBody]string value)
+        [HttpGet]
+        public async Task<IHttpActionResult> Get(Guid id)
         {
+            PropertyViewModel vm = Mapper.Map<PropertyViewModel>(await Service.GetAsync(id));
+            return Ok(vm);
         }
 
-        // PUT: api/Property/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPost]
+        public async Task<IHttpActionResult> Create(PropertyViewModel property)
         {
-        }
-
-        // DELETE: api/Property/5
-        public void Delete(int id)
-        {
+            property.Id = Guid.NewGuid();
+            await Service.AddAsync(Mapper.Map<IProperty>(property));
+            return Ok();
         }
     }
 }

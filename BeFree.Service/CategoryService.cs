@@ -1,15 +1,15 @@
 ﻿using BeFree.Model.Common;
 using BeFree.Repository.Common;
 using BeFree.Service.Common;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
 
 namespace BeFree.Service
 {
     public class CategoryService : ICategoryService
     {
-        protected ICategoryRepository Repository { get; set; }
+        protected ICategoryRepository Repository { get; private set; }
 
         public CategoryService(ICategoryRepository repository)
         {

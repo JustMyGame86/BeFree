@@ -13,6 +13,8 @@ namespace BeFree.Model
         public override void Load()
         {
             Bind<ICategory>().To<CategoryPOCO>();
+            Bind<IProperty>().To<PropertyPOCO>();
+            Bind<IReview>().To<ReviewPOCO>();
         }
     }
 }
