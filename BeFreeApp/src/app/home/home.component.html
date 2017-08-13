@@ -1,0 +1,13 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+</div>
+<button (click)="gotoNew()">New review</button>
+<ul class="reviews">
+  <li *ngFor="let review of reviews"
+    [class.selected]="review === selectedreview"
+    (click)="onSelect(review)">
+    <span class="badge">{{review.Rating}}</span> {{review.PropertyId}}
+  </li>
+</ul>

@@ -1,16 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { ReviewComponent } from './review/review.component';
+
+import { ReviewService } from './review.service';
+import { NewReviewComponent } from './new-review/new-review.component';
+import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
+
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReviewComponent,
+    NewReviewComponent,
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ReviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
