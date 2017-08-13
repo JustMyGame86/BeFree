@@ -14,5 +14,6 @@ namespace BeFree.Model.Common
         decimal? Latitude { get; set; }
         decimal? Longitude { get; set; }
         Guid CategoryId { get; set; }
+        ICategory Category { get; set; }
     }
 }

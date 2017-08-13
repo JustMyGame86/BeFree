@@ -14,5 +14,6 @@ namespace BeFree.Model
         public int Rating { get; set; }
         public string Comment { get; set; }
         public DateTime RatedOn { get; set; }
+        public IProperty Property {get;set;}
     }
 }

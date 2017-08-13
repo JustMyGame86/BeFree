@@ -8,6 +8,6 @@
   <li *ngFor="let review of reviews"
     [class.selected]="review === selectedreview"
     (click)="onSelect(review)">
-    <span class="badge">{{review.Rating}}</span> {{review.PropertyId}}
+    <span class="badge">{{review.Rating}}</span> {{review.Property.Name}} <small>[{{review.Property.Category.Name}}]</small>
   </li>
 </ul>

@@ -13,5 +13,6 @@ namespace BeFree.Model.Common
         int Rating { get; set; }
         string Comment { get; set; }
         DateTime RatedOn { get; set; }
+        IProperty Property { get; set; }
     }
 }

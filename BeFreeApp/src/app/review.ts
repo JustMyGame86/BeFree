@@ -1,3 +1,5 @@
+import { Property } from "./property";
+
 export class Review {
     constructor(
         public Id: string,
@@ -5,4 +7,6 @@ export class Review {
         public Rating: number,
         public RatedOn: Date,
         public Comment: string) { }
+
+    Property: Property
 }

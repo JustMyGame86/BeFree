@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 export class Property {
     public Id: string;
     public Name: string;
@@ -5,4 +7,5 @@ export class Property {
     public Latitude?: number;
     public Longitude?: number;
     public CategoryId: string;
+    public Category: Category;
 }
