@@ -12,5 +12,6 @@ namespace BeFreeAPI.ViewModels
         public int Rating { get; set; }
         public string Comment { get; set; }
         public DateTime RatedOn { get; set; }
+        public PropertyViewModel Property { get; set; }
     }
 }

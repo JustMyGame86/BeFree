@@ -6,8 +6,8 @@ using BeFree.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeFree.Repository
 {
@@ -33,6 +33,39 @@ namespace BeFree.Repository
         public virtual async Task<IProperty> GetAsync(Guid id)
         {
             return Mapper.Map<PropertyPOCO>(await Repository.GetByIDAsync<Property>(id));
+        }
+
+        public virtual async Task<IEnumerable<IProperty>> GetLastAsync(int n)
+        {
+            var properties = Repository.GetWhere<Property>();
+            var reviews = Repository.GetWhere<Review>();
+
+            var last = (from p in properties
+                        join r in reviews on p.id equals r.propertyid
+                        orderby r.ratedon descending
+                        select p).Take(n);
+
+            return Mapper.Map<IEnumerable<PropertyPOCO>>(await last.ToListAsync());
+        }
+
+        public virtual async Task<IEnumerable<IPropertyRating>> GetRatingsAsync(int n)
+        {
+            var ratings = from p in Repository.GetWhere<Property>()
+                          join r in Repository.GetWhere<Review>() on p.id equals r.propertyid
+                          group new { p, r } by p.id into grupa
+                          select new
+                          {
+                              Id = grupa.FirstOrDefault().p.id,
+                              Name = grupa.FirstOrDefault().p.name,
+                              Address = grupa.FirstOrDefault().p.address,
+                              Category = grupa.FirstOrDefault().p.Category,
+                              AverageRating = grupa.Average(a => a.r.rating),
+                              HighestRating = grupa.Max(a => a.r.rating),
+                              LowestRating = grupa.Min(a => a.r.rating),
+                              NumberOfReviews = grupa.Count()
+                          };
+
+            return Mapper.Map<IEnumerable<IPropertyRating>>(await ratings.ToListAsync());
         }
     }
 }

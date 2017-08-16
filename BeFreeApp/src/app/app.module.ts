@@ -10,6 +10,8 @@ import { ReviewService } from './review.service';
 import { NewReviewComponent } from './new-review/new-review.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { AlertComponent } from './alert/alert.component';
+import { AlertService } from './_services/alert.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,7 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
     ReviewComponent,
     NewReviewComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [ReviewService],
+  providers: [ReviewService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

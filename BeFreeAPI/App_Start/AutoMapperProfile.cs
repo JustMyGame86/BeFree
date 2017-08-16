@@ -17,6 +17,8 @@ namespace BeFreeAPI
 
             CreateMap<ReviewViewModel, IReview>().ReverseMap();
             CreateMap<ReviewViewModel, ReviewPOCO>().ReverseMap();
+
+            CreateMap<PropertyRatingViewModel, IPropertyRating>().ReverseMap();
         }
     }
 }

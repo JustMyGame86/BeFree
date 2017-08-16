@@ -3,6 +3,7 @@ using BeFree.Model.Common;
 using BeFree.Service.Common;
 using BeFreeAPI.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -21,6 +22,25 @@ namespace BeFreeAPI.Controllers
         public async Task<IHttpActionResult> Index()
         {
             var properties = await Service.GetAsync();
+
+            return Ok(new { results = properties });
+        }
+
+        [Route("api/property/last")]
+        [HttpGet]
+        public async Task<IHttpActionResult> Last(int n)
+        {
+            var properties = await Service.GetLastAsync(n);
+
+            return Ok(new { results = properties });
+        }
+
+        [Route("api/property/rating")]
+        [HttpGet]
+        public async Task<IHttpActionResult> Rating(int n)
+        {
+            var ratings = await Service.GetRatingsAsync(n);
+            var properties = Mapper.Map<IEnumerable<PropertyRatingViewModel>>(ratings);
 
             return Ok(new { results = properties });
         }

@@ -10,5 +10,7 @@ namespace BeFree.Service.Common
         Task<int> AddAsync(IProperty property);
         Task<IEnumerable<IProperty>> GetAsync();
         Task<IProperty> GetAsync(Guid id);
+        Task<IEnumerable<IProperty>> GetLastAsync(int n);
+        Task<IEnumerable<IPropertyRating>> GetRatingsAsync(int n);
     }
 }

@@ -1,11 +1,9 @@
-﻿using BeFree.Service.Common;
+﻿using BeFree.Model.Common;
+using BeFree.Repository.Common;
+using BeFree.Service.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using BeFree.Model.Common;
-using BeFree.Repository.Common;
 
 namespace BeFree.Service
 {
@@ -31,6 +29,16 @@ namespace BeFree.Service
         public Task<IProperty> GetAsync(Guid id)
         {
             return Repository.GetAsync(id);
+        }
+
+        public Task<IEnumerable<IProperty>> GetLastAsync(int n)
+        {
+            return Repository.GetLastAsync(n);
+        }
+
+        public Task<IEnumerable<IPropertyRating>> GetRatingsAsync(int n)
+        {
+            return Repository.GetRatingsAsync(n);
         }
     }
 }

@@ -13,5 +13,6 @@ namespace BeFreeAPI.ViewModels
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public Guid CategoryId { get; set; }
+        public CategoryViewModel Category { get; set; }
     }
 }

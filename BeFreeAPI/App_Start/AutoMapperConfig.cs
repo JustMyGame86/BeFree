@@ -10,6 +10,7 @@ namespace BeFreeAPI
             {
                 cfg.AddProfile<AutoMapperProfile>();
                 cfg.AddProfile<ModelProfile>();
+                cfg.CreateMissingTypeMaps = true;
             });
         }
     }

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Property } from '../property';
 import { ReviewService } from '../review.service';
 import { Review } from "../review";
+import { AlertService } from "../_services/alert.service";
 
 @Component({
   selector: 'app-new-review',
@@ -18,7 +19,8 @@ export class NewReviewComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private reviewService: ReviewService) { }
+    private reviewService: ReviewService,
+    private alertService: AlertService) { }
 
   getProperties(): void {
     this.reviewService.getProperties().then(properties => this.properties = properties);
@@ -38,5 +40,8 @@ export class NewReviewComponent implements OnInit {
     //this.model.Comment = "test";
   }
 
+  success(message: string) { 
+    this.alertService.success(message);
+}
   get diagnostic() { return JSON.stringify(this.model); }
 }
