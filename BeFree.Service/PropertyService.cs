@@ -1,4 +1,5 @@
-﻿using BeFree.Model.Common;
+﻿using BeFree.Common;
+using BeFree.Model.Common;
 using BeFree.Repository.Common;
 using BeFree.Service.Common;
 using System;
@@ -21,9 +22,9 @@ namespace BeFree.Service
             return Repository.AddAsync(property);
         }
 
-        public Task<IEnumerable<IProperty>> GetAsync()
+        public Task<IEnumerable<IProperty>> GetAsync(IFilter filter)
         {
-            return Repository.GetAsync();
+            return Repository.GetAsync(filter);
         }
 
         public Task<IProperty> GetAsync(Guid id)

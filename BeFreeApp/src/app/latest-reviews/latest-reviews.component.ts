@@ -4,11 +4,11 @@ import { Router } from "@angular/router";
 import { ReviewService } from "../review.service";
 
 @Component({
-  selector: 'app-review',
-  templateUrl: './review.component.html',
-  styleUrls: ['./review.component.css']
+  selector: 'latest-reviews',
+  templateUrl: './latest-reviews.component.html',
+  styleUrls: ['./latest-reviews.component.css']
 })
-export class ReviewComponent implements OnInit {
+export class LatestReviewsComponent implements OnInit {
   reviews: Review[];
 
   constructor(

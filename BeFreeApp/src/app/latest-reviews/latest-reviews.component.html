@@ -1,0 +1,9 @@
+<div class="list-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Latest reviews</div>
+    <button type="button" class="list-group-item" *ngFor="let review of reviews; let i = index" [class.selected]="review === selectedreview"
+      (click)="onSelect(review)">
+      <span class="badge">{{review.Rating}}</span>{{i+1}}. {{review.Property.Name}} <small>[{{review.Property.Category.Name}}]</small>
+    </button>
+  </div>
+</div>

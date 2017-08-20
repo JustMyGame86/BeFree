@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BeFree.Common;
 using BeFree.DAL.Model;
 using BeFree.Model;
 using BeFree.Model.Common;
@@ -25,9 +26,14 @@ namespace BeFree.Repository
             return Repository.AddAsync<Property>(Mapper.Map<Property>(property));
         }
 
-        public virtual async Task<IEnumerable<IProperty>> GetAsync()
+        public virtual async Task<IEnumerable<IProperty>> GetAsync(IFilter filter)
         {
-            return Mapper.Map<IEnumerable<PropertyPOCO>>(await Repository.GetWhere<Property>().ToListAsync());
+            if (filter == null)
+            {
+                return Mapper.Map<IEnumerable<PropertyPOCO>>(await Repository.GetWhere<Property>().Take(99).ToListAsync());
+            }
+            var filtered = Repository.GetWhere<Property>().Skip(filter.Page * filter.PageSize).Take(filter.Page);
+            return Mapper.Map<IEnumerable<PropertyPOCO>>(await filtered.ToListAsync());
         }
 
         public virtual async Task<IProperty> GetAsync(Guid id)
@@ -65,7 +71,7 @@ namespace BeFree.Repository
                               NumberOfReviews = grupa.Count()
                           };
 
-            return Mapper.Map<IEnumerable<IPropertyRating>>(await ratings.ToListAsync());
+            return Mapper.Map<IEnumerable<IPropertyRating>>(await ratings.Take(n).ToListAsync());
         }
     }
 }

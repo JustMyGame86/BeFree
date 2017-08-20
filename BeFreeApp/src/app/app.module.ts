@@ -14,6 +14,9 @@ import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './_services/alert.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { TopPropertiesComponent } from "./top-properties/top-properties.component";
+import { LatestReviewsComponent } from './latest-reviews/latest-reviews.component';
+import { PropertyDetailsComponent } from './property-details/property-details.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { AppRoutingModule } from './app-routing.module';
     NewReviewComponent,
     HomeComponent,
     SearchComponent,
-    AlertComponent
+    AlertComponent,
+    TopPropertiesComponent,
+    LatestReviewsComponent,
+    PropertyDetailsComponent
   ],
   imports: [
     BrowserModule,

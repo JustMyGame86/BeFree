@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Review } from './review';
 import { Property } from './property';
+import { PropertyRating } from "./_models/propertyrating";
 
 @Injectable()
 export class ReviewService {
@@ -22,7 +23,17 @@ export class ReviewService {
         return this.http.get(this.reviewUrl)
             .toPromise()
             .then(response => {
-                console.log(response.json().results);
+                //console.log(response.json().results);
+                return response.json().results as Review[];
+            })
+            .catch(this.handleError);
+    }
+
+    getReviewsByProperty(propertyid: string): Promise<Review[]> {
+        return this.http.get(this.reviewUrl)
+            .toPromise()
+            .then(response => {
+                //console.log(response.json().results);
                 return response.json().results as Review[];
             })
             .catch(this.handleError);
@@ -30,6 +41,15 @@ export class ReviewService {
 
     getProperties(): Promise<Property[]> {
         return this.http.get(this.propertyUrl)
+            .toPromise()
+            .then(response => {
+                return response.json().results as Property[];
+            })
+            .catch(this.handleError);
+    }
+
+    getTopProperties(n: number): Promise<PropertyRating[]> {
+        return this.http.get(this.propertyUrl + '/rating?n=' + n.toString())
             .toPromise()
             .then(response => {
                 return response.json().results as Property[];

@@ -1,0 +1,8 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Top {{numberofproperties}} facilities</div>
+    <ul class="topproperty list-group">
+        <li class="list-group-item" *ngFor="let property of properties; let i = index" (click)="onSelect(property)">
+            <span class="badge">{{property.AverageRating}}</span>{{i + 1}}. {{property.Name}} <small>[{{property.Category.Name}}]</small>
+        </li>
+    </ul>
+</div>

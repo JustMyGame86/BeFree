@@ -26,7 +26,7 @@ namespace BeFree.Repository
 
         public virtual async Task<IEnumerable<IReview>> GetAsync()
         {
-            return Mapper.Map<IEnumerable<IReview>>(await Repository.GetWhere<Review>().ToListAsync());
+            return Mapper.Map<IEnumerable<IReview>>(await Repository.GetWhere<Review>().Take(20).ToListAsync());
         }
 
         public virtual async Task<IReview> GetAsync(Guid id)

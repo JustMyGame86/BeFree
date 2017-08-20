@@ -138,6 +138,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BeFree.Common\BeFree.Common.csproj">
+      <Project>{5280AF9E-7842-4C26-B0A2-75CAD9D18127}</Project>
+      <Name>BeFree.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BeFree.DAL\BeFree.DAL.csproj">
       <Project>{CA1DA7C9-183B-46CF-9807-F2399AA7446D}</Project>
       <Name>BeFree.DAL</Name>

@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BeFree.Common\BeFree.Common.csproj">
+      <Project>{5280AF9E-7842-4C26-B0A2-75CAD9D18127}</Project>
+      <Name>BeFree.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BeFree.Model.Common\BeFree.Model.Common.csproj">
       <Project>{3A30C3D7-D3D6-49B3-B0C9-6E8C0E6F98FD}</Project>
       <Name>BeFree.Model.Common</Name>

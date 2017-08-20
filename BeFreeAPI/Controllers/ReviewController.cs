@@ -25,6 +25,15 @@ namespace BeFreeAPI.Controllers
             return Ok(new { results = reviews });
         }
 
+        [Route("api/review/property")]
+        [HttpGet]
+        public async Task<IHttpActionResult> ListByProperty(Guid id)
+        {
+            var reviews = await Service.GetAsync();
+
+            return Ok(new { results = reviews });
+        }
+
         [HttpGet]
         public async Task<IHttpActionResult> Get(Guid id)
         {

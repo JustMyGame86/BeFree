@@ -21,7 +21,7 @@ namespace BeFreeAPI.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> Index()
         {
-            var properties = await Service.GetAsync();
+            var properties = await Service.GetAsync(null);
 
             return Ok(new { results = properties });
         }

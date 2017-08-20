@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85A6B055-60C4-4B1B-AA36-6BC060929E3B}</ProjectGuid>
+    <ProjectGuid>{5280AF9E-7842-4C26-B0A2-75CAD9D18127}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BeFree.Service</RootNamespace>
-    <AssemblyName>BeFree.Service</AssemblyName>
+    <RootNamespace>BeFree.Common</RootNamespace>
+    <AssemblyName>BeFree.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,32 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryService.cs" />
-    <Compile Include="DIModule.cs" />
+    <Compile Include="Filter.cs" />
+    <Compile Include="IFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyService.cs" />
-    <Compile Include="ReviewService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BeFree.Common\BeFree.Common.csproj">
-      <Project>{5280AF9E-7842-4C26-B0A2-75CAD9D18127}</Project>
-      <Name>BeFree.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BeFree.Model.Common\BeFree.Model.Common.csproj">
-      <Project>{3A30C3D7-D3D6-49B3-B0C9-6E8C0E6F98FD}</Project>
-      <Name>BeFree.Model.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BeFree.Repository.Common\BeFree.Repository.Common.csproj">
-      <Project>{DB406DB7-FC78-4AC1-AFAC-1FDD52742481}</Project>
-      <Name>BeFree.Repository.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BeFree.Service.Common\BeFree.Service.Common.csproj">
-      <Project>{6A68A6F4-7E21-4F7F-A857-48E44F2DFA43}</Project>
-      <Name>BeFree.Service.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

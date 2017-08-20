@@ -29,5 +29,10 @@ namespace BeFree.Service
         {
             return Repository.GetAsync(id);
         }
+
+        public Task<IEnumerable<IReview>> GetByPropertyIdAsync(Guid id)
+        {
+            return Repository.GetAsync();
+        }
     }
 }

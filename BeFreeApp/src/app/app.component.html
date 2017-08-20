@@ -1,8 +1,30 @@
-<h1>{{title}}</h1>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+      <a class="navbar-brand" href="#">
+                <img alt="Brand" src="./favicon.ico">
+      </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li role="presentation" class="active">
+          <a routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+        <li role="presentation">
+          <a routerLink="/search" routerLinkActive="active">Search</a>
+        </li>
+        <li role="presentation">
+          <a routerLink="/review" routerLinkActive="active">Reviews</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <alert></alert>
-<nav>
-  <a routerLink="/home" routerLinkActive="active">Home</a>
-  <a routerLink="/search" routerLinkActive="active">Search</a>
-  <a routerLink="/review" routerLinkActive="active">Reviews</a>
-</nav>
 <router-outlet></router-outlet>

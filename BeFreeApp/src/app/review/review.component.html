@@ -1,3 +1,8 @@
-<p>
-  review works!
-</p>
+<ul class="list-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Latest reviews</div>
+    <li class="list-group-item" *ngFor="let review of reviews" [class.selected]="review === selectedreview" (click)="onSelect(review)">
+      <span class="badge">{{review.Rating}}</span> {{review.Property.Name}} <small>[{{review.Property.Category.Name}}]</small>
+    </li>
+  </div>
+</ul>
