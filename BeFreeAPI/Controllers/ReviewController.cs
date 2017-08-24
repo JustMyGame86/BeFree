@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BeFree.Common;
 using BeFree.Model.Common;
 using BeFree.Service.Common;
 using BeFreeAPI.ViewModels;
@@ -20,16 +21,16 @@ namespace BeFreeAPI.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> Index()
         {
-            var reviews = await Service.GetAsync();
+            var reviews = await Service.GetAsync(null);
 
             return Ok(new { results = reviews });
         }
 
         [Route("api/review/property")]
         [HttpGet]
-        public async Task<IHttpActionResult> ListByProperty(Guid id)
+        public async Task<IHttpActionResult> ListByProperty(Guid id, int page = 1)
         {
-            var reviews = await Service.GetAsync();
+            var reviews = await Service.GetByPropertyIdAsync(new PropertyFilter() { PropertyId = id, Page = page });
 
             return Ok(new { results = reviews });
         }

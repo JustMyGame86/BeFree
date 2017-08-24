@@ -17,6 +17,7 @@ namespace BeFree.Repository
         public Repository()
         {
             DbContext = new DAL.Model.BeFreeEntities();
+            DbContext.Database.Log = s => Debug.WriteLine(s);
         }
 
         public virtual async Task<int> AddAsync<T>(T entity) where T : class

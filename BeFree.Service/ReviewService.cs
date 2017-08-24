@@ -4,6 +4,7 @@ using BeFree.Service.Common;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BeFree.Common;
 
 namespace BeFree.Service
 {
@@ -20,9 +21,9 @@ namespace BeFree.Service
             return Repository.AddAsync(review);
         }
 
-        public Task<IEnumerable<IReview>> GetAsync()
+        public Task<IEnumerable<IReview>> GetAsync(IFilter filter)
         {
-            return Repository.GetAsync();
+            return Repository.GetAsync(filter);
         }
 
         public Task<IReview> GetAsync(Guid id)
@@ -30,9 +31,9 @@ namespace BeFree.Service
             return Repository.GetAsync(id);
         }
 
-        public Task<IEnumerable<IReview>> GetByPropertyIdAsync(Guid id)
+        public Task<IEnumerable<IReview>> GetByPropertyIdAsync(IPropertyFilter filter)
         {
-            return Repository.GetAsync();
+            return Repository.GetByPropertyIdAsync(filter);
         }
     }
 }

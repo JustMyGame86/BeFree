@@ -32,7 +32,7 @@ namespace BeFree.Repository
             {
                 return Mapper.Map<IEnumerable<PropertyPOCO>>(await Repository.GetWhere<Property>().Take(99).ToListAsync());
             }
-            var filtered = Repository.GetWhere<Property>().Skip(filter.Page * filter.PageSize).Take(filter.Page);
+            var filtered = Repository.GetWhere<Property>().Skip(filter.Skip).Take(filter.Page);
             return Mapper.Map<IEnumerable<PropertyPOCO>>(await filtered.ToListAsync());
         }
 
@@ -53,7 +53,11 @@ namespace BeFree.Repository
 
             return Mapper.Map<IEnumerable<PropertyPOCO>>(await last.ToListAsync());
         }
-
+        /// <summary>
+        /// Returns top n properties ordered by AverageRatiig
+        /// </summary>
+        /// <param name="n">Number of properties to return</param>
+        /// <returns></returns>
         public virtual async Task<IEnumerable<IPropertyRating>> GetRatingsAsync(int n)
         {
             var ratings = from p in Repository.GetWhere<Property>()
@@ -71,7 +75,10 @@ namespace BeFree.Repository
                               NumberOfReviews = grupa.Count()
                           };
 
-            return Mapper.Map<IEnumerable<IPropertyRating>>(await ratings.Take(n).ToListAsync());
+            return Mapper.Map<IEnumerable<IPropertyRating>>(await ratings
+                .OrderByDescending(o => o.AverageRating)
+                .Take(n)
+                .ToListAsync());
         }
     }
 }

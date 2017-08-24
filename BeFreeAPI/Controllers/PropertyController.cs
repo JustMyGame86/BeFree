@@ -37,7 +37,7 @@ namespace BeFreeAPI.Controllers
 
         [Route("api/property/rating")]
         [HttpGet]
-        public async Task<IHttpActionResult> Rating(int n)
+        public async Task<IHttpActionResult> Rating(int n, Guid propertyId = default(Guid))
         {
             var ratings = await Service.GetRatingsAsync(n);
             var properties = Mapper.Map<IEnumerable<PropertyRatingViewModel>>(ratings);
@@ -49,7 +49,7 @@ namespace BeFreeAPI.Controllers
         public async Task<IHttpActionResult> Get(Guid id)
         {
             PropertyViewModel vm = Mapper.Map<PropertyViewModel>(await Service.GetAsync(id));
-            return Ok(vm);
+            return Ok(new { results = vm });
         }
 
         [HttpPost]

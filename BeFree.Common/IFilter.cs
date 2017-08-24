@@ -12,5 +12,6 @@ namespace BeFree.Common
         int Page { get; set; }
         int PageSize { get; set; }
         string Sort { get; set; }
+        int Skip { get; set; }
     }
 }

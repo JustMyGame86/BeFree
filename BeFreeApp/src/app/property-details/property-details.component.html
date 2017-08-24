@@ -1,3 +1,23 @@
-<p>
-  property-details works!
-</p>
+<h2>{{property.Name}}</h2>
+Category:{{property.Category.Name}}
+<hr/> Page: {{currentpage}}
+
+<div class="list-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Reviews</div>
+    <button type="button" class="list-group-item" *ngFor="let review of reviews; let i = index" [class.selected]="review === selectedreview"
+      (click)="onSelect(review)">
+        <span class="badge">{{review.Rating}}</span>{{(currentpage - 1) * 10 + i+1}}. {{review.Comment}} 
+        <div><small>[{{review.RatedOn}}]</small></div>
+      </button>
+  </div>
+</div>
+<hr/>
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous">
+      <button (click)="previousPage()"><span aria-hidden="true">&larr;</span> Older</button></li>
+    <li class="next">
+      <button (click)="nextPage()">Newer <span aria-hidden="true">&rarr;</span></button></li>
+  </ul>
+</nav>

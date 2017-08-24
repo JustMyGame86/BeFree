@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Filter.cs" />
     <Compile Include="IFilter.cs" />
+    <Compile Include="IPropertyFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyFilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

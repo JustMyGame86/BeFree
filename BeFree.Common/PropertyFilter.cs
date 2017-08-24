@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BeFree.Common
 {
-    public class Filter : IFilter
+    public class PropertyFilter : IPropertyFilter
     {
+        public Guid PropertyId { get; set; }
         public string SearchTerm { get; set; }
         public int Page { get; set; }
         public int PageSize { get; set; }
@@ -21,7 +22,7 @@ namespace BeFree.Common
             set { }
         }
 
-        public Filter()
+        public PropertyFilter()
         {
             PageSize = 10;
         }
