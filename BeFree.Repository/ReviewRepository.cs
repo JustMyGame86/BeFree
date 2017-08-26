@@ -29,7 +29,7 @@ namespace BeFree.Repository
         public virtual async Task<IEnumerable<IReview>> GetAsync(IFilter filter)
         {
             if (filter == null)
-                return Mapper.Map<IEnumerable<IReview>>(await Repository.GetWhere<Review>().Take(20).ToListAsync());
+                return Mapper.Map<IEnumerable<IReview>>(await Repository.GetWhere<Review>().Take(10).ToListAsync());
 
             var filtered = Repository.GetWhere<Review>()
                 .Skip(filter.Skip)

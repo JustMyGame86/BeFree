@@ -54,7 +54,7 @@ namespace BeFree.Repository
             return Mapper.Map<IEnumerable<PropertyPOCO>>(await last.ToListAsync());
         }
         /// <summary>
-        /// Returns top n properties ordered by AverageRatiig
+        /// Returns top n properties ordered by AverageRating
         /// </summary>
         /// <param name="n">Number of properties to return</param>
         /// <returns></returns>
@@ -69,7 +69,9 @@ namespace BeFree.Repository
                               Name = grupa.FirstOrDefault().p.name,
                               Address = grupa.FirstOrDefault().p.address,
                               Category = grupa.FirstOrDefault().p.Category,
-                              AverageRating = grupa.Average(a => a.r.rating),
+                              Latitude = grupa.FirstOrDefault().p.latitude,
+                              Longitude = grupa.FirstOrDefault().p.longitude,
+                              AverageRating = Math.Round(grupa.Average(a => a.r.rating), 2),
                               HighestRating = grupa.Max(a => a.r.rating),
                               LowestRating = grupa.Min(a => a.r.rating),
                               NumberOfReviews = grupa.Count()
@@ -79,6 +81,34 @@ namespace BeFree.Repository
                 .OrderByDescending(o => o.AverageRating)
                 .Take(n)
                 .ToListAsync());
+        }
+
+        /// <summary>
+        /// Returns rating info of a property
+        /// </summary>
+        /// <param name="propertyId">Property identifier of a wanted property</param>
+        /// <returns>rating info</returns>
+        public virtual async Task<IPropertyRating> GetRatingAsync(Guid propertyId)
+        {
+            var rating = (from p in Repository.GetWhere<Property>()
+                          join r in Repository.GetWhere<Review>() on p.id equals r.propertyid
+                          where r.propertyid == propertyId
+                          group new { p, r } by p.id into grupa
+                          select new
+                          {
+                              Id = grupa.FirstOrDefault().p.id,
+                              Name = grupa.FirstOrDefault().p.name,
+                              Address = grupa.FirstOrDefault().p.address,
+                              Category = grupa.FirstOrDefault().p.Category,
+                              Latitude = grupa.FirstOrDefault().p.latitude,
+                              Longitude = grupa.FirstOrDefault().p.longitude,
+                              AverageRating = Math.Round(grupa.Average(a => a.r.rating), 2),
+                              HighestRating = grupa.Max(a => a.r.rating),
+                              LowestRating = grupa.Min(a => a.r.rating),
+                              NumberOfReviews = grupa.Count()
+                          }).FirstOrDefaultAsync();
+
+            return Mapper.Map<IPropertyRating>(await rating);
         }
     }
 }

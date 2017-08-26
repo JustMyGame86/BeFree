@@ -58,8 +58,18 @@ export class ReviewService {
             .catch(this.handleError);
     }
 
+    getPropertyRating(id: string): Promise<PropertyRating> {
+        return this.http.get(this.propertyUrl + '/rating?propertyid=' + id)
+            .toPromise()
+            .then(response => {
+                console.log(response.json().results);
+                return response.json().results as Property[];
+            })
+            .catch(this.handleError);
+    }
+
     getTopProperties(n: number): Promise<PropertyRating[]> {
-        return this.http.get(this.propertyUrl + '/rating?n=' + n.toString())
+        return this.http.get(this.propertyUrl + '/topratings?n=' + n.toString())
             .toPromise()
             .then(response => {
                 return response.json().results as Property[];

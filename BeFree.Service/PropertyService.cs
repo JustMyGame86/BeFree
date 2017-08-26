@@ -41,5 +41,10 @@ namespace BeFree.Service
         {
             return Repository.GetRatingsAsync(n);
         }
+
+        public Task<IPropertyRating> GetRatingAsync(Guid propertyId)
+        {
+            return Repository.GetRatingAsync(propertyId);
+        }
     }
 }

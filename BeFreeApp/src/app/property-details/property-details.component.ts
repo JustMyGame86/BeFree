@@ -6,6 +6,7 @@ import { Property } from "../property";
 
 import 'rxjs/add/operator/switchMap';
 import { Review } from "../review";
+import { PropertyRating } from "../_models/propertyrating";
 
 @Component({
   selector: 'app-property-details',
@@ -15,7 +16,7 @@ import { Review } from "../review";
 export class PropertyDetailsComponent implements OnInit {
   currentpage: number = 1;
   propertyid: string;
-  property: Property = null;
+  property: PropertyRating = null;
   reviews: Review[];
 
   constructor(
@@ -23,6 +24,12 @@ export class PropertyDetailsComponent implements OnInit {
     private router: Router,
     private service: ReviewService) { }
 
+  getLabelColour(): string {
+    if (this.property.AverageRating < 3.5)
+      return "warning";
+    if (this.property.AverageRating < 2)
+      return "success";
+  }
   nextPage() {
     this.currentpage++;
     this.getReviews();
@@ -36,7 +43,7 @@ export class PropertyDetailsComponent implements OnInit {
   }
 
   loadDetails() {
-    this.service.getProperty(this.propertyid).then(r => this.property = r);
+    this.service.getPropertyRating(this.propertyid).then(r => this.property = r);
     this.getReviews();
   }
 

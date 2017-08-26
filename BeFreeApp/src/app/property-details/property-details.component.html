@@ -1,7 +1,24 @@
-<h2>{{property.Name}}</h2>
-Category:{{property.Category.Name}}
-<hr/> Page: {{currentpage}}
+<div class="well well-sm ">
+  <h2>{{property.Name}}</h2>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <p><small>Category:</small>
+      <br/> {{property.Category.Name}}
+    </p>
+    <p><small>Address:</small>
+      <br/> {{property.Address}}</p>
+    <h3>
+      <div class="label label-{{getLabelColour()}} text-right">{{property.AverageRating}} <i class="fa fa-star-o" aria-hidden="true"></i></div>
+    </h3>
+  </div>
+  <div class="col-md-8">
+    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C{{property.Latitude}},{{property.Longitude}}&key=AIzaSyCJwebjs9mpuOex_uZ7axThkPyLYN_1-U0"
+      alt="">
+  </div>
+</div>
 
+<hr/>
 <div class="list-group">
   <div class="panel panel-primary">
     <div class="panel-heading">Reviews</div>
@@ -12,12 +29,13 @@ Category:{{property.Category.Name}}
       </button>
   </div>
 </div>
-<hr/>
+<hr/> Page: {{currentpage}}
+
 <nav aria-label="...">
   <ul class="pager">
     <li class="previous">
-      <button (click)="previousPage()"><span aria-hidden="true">&larr;</span> Older</button></li>
+      <button (click)="previousPage()"><span aria-hidden="true">&larr;</span> Previous</button></li>
     <li class="next">
-      <button (click)="nextPage()">Newer <span aria-hidden="true">&rarr;</span></button></li>
+      <button (click)="nextPage()">Next <span aria-hidden="true">&rarr;</span></button></li>
   </ul>
 </nav>
