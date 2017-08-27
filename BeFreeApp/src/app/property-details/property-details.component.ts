@@ -18,11 +18,21 @@ export class PropertyDetailsComponent implements OnInit {
   propertyid: string;
   property: PropertyRating = null;
   reviews: Review[];
+  sort: string = "desc";
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: ReviewService) { }
+
+  toggleSort() {
+    if (this.sort == "desc")
+      this.sort = "asc";
+    else
+      this.sort = "desc";
+
+    this.getReviews();
+  }
 
   getLabelColour(): string {
     if (this.property.AverageRating < 3.5)
@@ -48,7 +58,8 @@ export class PropertyDetailsComponent implements OnInit {
   }
 
   getReviews() {
-    this.service.getReviewsByProperty(this.propertyid, this.currentpage).then(r => this.reviews = r);
+    //this.reviews = null;
+    this.service.getReviewsByProperty(this.propertyid, this.currentpage, "ratedon_" + this.sort).then(r => this.reviews = r);
   }
 
   ngOnInit() {

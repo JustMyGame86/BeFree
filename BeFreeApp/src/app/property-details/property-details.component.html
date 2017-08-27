@@ -21,7 +21,7 @@
 <hr/>
 <div class="list-group">
   <div class="panel panel-primary">
-    <div class="panel-heading">Reviews</div>
+    <div class="panel-heading">Reviews <button class="btn btn-sm btn-success left" (click)="toggleSort()"><span class="fa fa-sort-amount-{{sort}}"></span></button></div>
     <button type="button" class="list-group-item" *ngFor="let review of reviews; let i = index" [class.selected]="review === selectedreview"
       (click)="onSelect(review)">
         <span class="badge">{{review.Rating}}</span>{{(currentpage - 1) * 10 + i+1}}. {{review.Comment}} 

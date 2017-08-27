@@ -28,9 +28,9 @@ namespace BeFreeAPI.Controllers
 
         [Route("api/review/property")]
         [HttpGet]
-        public async Task<IHttpActionResult> ListByProperty(Guid id, int page = 1)
+        public async Task<IHttpActionResult> ListByProperty(Guid id, int page = 1, string sort = "ratedon_desc")
         {
-            var reviews = await Service.GetByPropertyIdAsync(new PropertyFilter() { PropertyId = id, Page = page });
+            var reviews = await Service.GetByPropertyIdAsync(new PropertyFilter() { PropertyId = id, Page = page, Sort = sort });
 
             return Ok(new { results = reviews });
         }

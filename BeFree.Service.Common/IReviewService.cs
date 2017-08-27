@@ -11,6 +11,11 @@ namespace BeFree.Service.Common
         Task<int> AddAsync(IReview review);
         Task<IEnumerable<IReview>> GetAsync(IFilter filter);
         Task<IReview> GetAsync(Guid id);
+        /// <summary>
+        /// Gets reviews for the given property
+        /// </summary>
+        /// <param name="filter">Filter object used to filter, sort and page the results</param>
+        /// <returns>Reviwes</returns>
         Task<IEnumerable<IReview>> GetByPropertyIdAsync(IPropertyFilter filter);
     }
 }

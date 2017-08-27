@@ -1,15 +1,14 @@
-﻿using BeFree.Repository.Common;
+﻿using AutoMapper;
+using BeFree.Common;
+using BeFree.DAL.Model;
+using BeFree.Model.Common;
+using BeFree.Repository.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BeFree.Model.Common;
-using AutoMapper;
-using BeFree.DAL.Model;
 using System.Data.Entity;
-using BeFree.Common;
-using System.Diagnostics;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace BeFree.Repository
 {
@@ -42,20 +41,23 @@ namespace BeFree.Repository
             return Mapper.Map<IReview>(await Repository.GetByIDAsync<Review>(id));
         }
 
+        /// <summary>
+        /// Gets reviews for the given property
+        /// </summary>
+        /// <param name="filter">Filter object used to filter, sort and page the results</param>
+        /// <returns>Reviwes</returns>
         public virtual async Task<IEnumerable<IReview>> GetByPropertyIdAsync(IPropertyFilter filter)
         {
-            //var reviews = Repository.GetWhere<Review>()
-            //    .Where(w => w.propertyid == filter.PropertyId);
+            var reviews = from r in Repository.GetWhere<Review>()
+                          where r.propertyid == filter.PropertyId
+                          select r;
 
-            //Trace.WriteLine(reviews.ToList().Count);
-            
-            return Mapper.Map<IEnumerable<IReview>>(await Repository.GetWhere<Review>()
-                .Where(w => w.propertyid == filter.PropertyId)
-                .OrderByDescending(o => o.ratedon)
-                .ThenByDescending(o => o.id)
+            reviews = reviews.OrderByDyn("ratedon", filter.Sort.Contains("_desc"))
+                .ThenByDyn("id", true)
                 .Skip(filter.Skip)
-                .Take(filter.PageSize)
-                .ToListAsync());
+                .Take(filter.PageSize);
+
+            return Mapper.Map<IEnumerable<IReview>>(await reviews.ToListAsync());
         }
     }
 }
