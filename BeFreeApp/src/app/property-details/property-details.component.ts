@@ -59,7 +59,7 @@ export class PropertyDetailsComponent implements OnInit {
 
   getReviews() {
     //this.reviews = null;
-    this.service.getReviewsByProperty(this.propertyid, this.currentpage, "ratedon_" + this.sort).then(r => this.reviews = r);
+    this.service.getReviewsByProperty(this.propertyid, this.currentpage, "ratedon", this.sort).then(r => this.reviews = r);
   }
 
   ngOnInit() {

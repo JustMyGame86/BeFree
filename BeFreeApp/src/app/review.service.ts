@@ -29,8 +29,8 @@ export class ReviewService {
             .catch(this.handleError);
     }
 
-    getReviewsByProperty(propertyid: string, page: number = 1, sort: string = "ratedon#desc"): Promise<Review[]> {
-        return this.http.get(this.reviewUrl + '/property?id=' + propertyid + '&page=' + page.toString() + '&sort=' + sort)
+    getReviewsByProperty(propertyid: string, page: number = 1, sort: string = "ratedon", direction: string = "asc"): Promise<Review[]> {
+        return this.http.get(this.reviewUrl + '/property?id=' + propertyid + '&page=' + page.toString() + '&sort=' + sort + '&direction=' + direction)
             .toPromise()
             .then(response => {
                 //console.log(response.json().results);

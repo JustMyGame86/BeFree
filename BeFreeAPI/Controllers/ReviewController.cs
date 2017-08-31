@@ -43,9 +43,9 @@ namespace BeFreeAPI.Controllers
 
         [Route("api/review/property")]
         [HttpGet]
-        public async Task<IHttpActionResult> ListByProperty(Guid id, int page = 1, string sort = "ratedon_desc")
+        public async Task<IHttpActionResult> ListByProperty(Guid id, int page = 1, string sort = "ratedon", string direction = "asc")
         {
-            var reviews = await Service.GetByPropertyIdAsync(new PropertyFilter() { PropertyId = id, Page = page, OrderBy = sort, OrderAsc = sort.Contains("_asc") });
+            var reviews = await Service.GetByPropertyIdAsync(new PropertyFilter() { PropertyId = id, Page = page, OrderBy = sort, OrderAsc = direction == "asc" });
 
             return Ok(new { results = reviews });
         }
