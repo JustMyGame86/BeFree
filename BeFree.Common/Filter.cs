@@ -11,7 +11,8 @@ namespace BeFree.Common
         public string SearchTerm { get; set; }
         public int Page { get; set; }
         public int PageSize { get; set; }
-        public string Sort { get; set; }
+        public string OrderBy { get; set; }
+        public bool OrderAsc { get; set; }
         public int Skip
         {
             get

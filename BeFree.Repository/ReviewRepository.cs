@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BeFree.Repository
@@ -28,11 +27,29 @@ namespace BeFree.Repository
         public virtual async Task<IEnumerable<IReview>> GetAsync(IFilter filter)
         {
             if (filter == null)
-                return Mapper.Map<IEnumerable<IReview>>(await Repository.GetWhere<Review>().Take(10).ToListAsync());
+            {
+                filter = new Filter()
+                {
+                    PageSize = 10,
+                    Page = 1,
+                    OrderBy = "ratedon"
+                };
+            }
 
-            var filtered = Repository.GetWhere<Review>()
+            if (string.IsNullOrWhiteSpace(filter.OrderBy))
+            {
+                filter.OrderBy = "ratedon";
+            }
+
+            var filtered = Repository.GetWhere<Review>();
+
+            if (!String.IsNullOrWhiteSpace(filter.SearchTerm))
+                filtered = filtered.Where(w => w.Property.name.Contains(filter.SearchTerm) || w.Property.address.Contains(filter.SearchTerm));
+
+            filtered = filtered.OrderByDyn(filter.OrderBy, filter.OrderAsc)
                 .Skip(filter.Skip)
                 .Take(filter.PageSize);
+
             return Mapper.Map<IEnumerable<IReview>>(await filtered.ToListAsync());
         }
 
@@ -48,14 +65,29 @@ namespace BeFree.Repository
         /// <returns>Reviwes</returns>
         public virtual async Task<IEnumerable<IReview>> GetByPropertyIdAsync(IPropertyFilter filter)
         {
-            var reviews = from r in Repository.GetWhere<Review>()
-                          where r.propertyid == filter.PropertyId
-                          select r;
+            if (filter == null)
+            {
+                filter = new PropertyFilter()
+                {
+                    Page = 1,
+                    PageSize = 10,
+                    OrderBy = "id"
+                };
+            }
+            if (String.IsNullOrWhiteSpace(filter.OrderBy))
+            {
+                filter.OrderBy = "id";
+            }
+            var reviews = Repository.GetWhere<Review>()
+                            .Where(r => r.propertyid == filter.PropertyId);
 
-            reviews = reviews.OrderByDyn("ratedon", filter.Sort.Contains("_desc"))
-                .ThenByDyn("id", true)
-                .Skip(filter.Skip)
-                .Take(filter.PageSize);
+            if (!String.IsNullOrWhiteSpace(filter.SearchTerm))
+                reviews = reviews.Where(w => w.Property.name.Contains(filter.SearchTerm) || w.Property.address.Contains(filter.SearchTerm));
+
+            reviews = reviews.OrderByDyn(filter.OrderBy, filter.OrderAsc)
+                            .ThenByDyn("id", true)
+                            .Skip(filter.Skip)
+                            .Take(filter.PageSize);
 
             return Mapper.Map<IEnumerable<IReview>>(await reviews.ToListAsync());
         }

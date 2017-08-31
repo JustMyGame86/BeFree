@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeFree.Common
+﻿namespace BeFree.Common
 {
     public interface IFilter
     {
         string SearchTerm { get; set; }
         int Page { get; set; }
         int PageSize { get; set; }
-        string Sort { get; set; }
+        string OrderBy { get; set; }
         int Skip { get; set; }
+        bool OrderAsc { get; set; }
     }
 }

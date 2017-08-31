@@ -1,17 +1,14 @@
-﻿ using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeFree.Common
 {
     public static class Extensions
     {
-        public static IQueryable<TEntity> OrderByDyn<TEntity>(this IQueryable<TEntity> source, string orderByProperty, bool desc) where TEntity : class
+        public static IQueryable<TEntity> OrderByDyn<TEntity>(this IQueryable<TEntity> source, string orderByProperty, bool asc) where TEntity : class
         {
-            string command = desc ? "OrderByDescending" : "OrderBy";
+            string command = asc ? "OrderBy" : "OrderByDescending";
             var type = typeof(TEntity);
             var property = type.GetProperty(orderByProperty);
             var parameter = Expression.Parameter(type, "orderparam");
@@ -22,9 +19,9 @@ namespace BeFree.Common
             return source.Provider.CreateQuery<TEntity>(resultExpression);
         }
 
-        public static IQueryable<TEntity> ThenByDyn<TEntity>(this IQueryable<TEntity> source, string orderByProperty, bool desc) where TEntity : class
+        public static IQueryable<TEntity> ThenByDyn<TEntity>(this IQueryable<TEntity> source, string orderByProperty, bool asc) where TEntity : class
         {
-            string command = desc ? "ThenByDescending" : "ThenBy";
+            string command = asc ? "ThenBy" : "ThenByDescending";
             var type = typeof(TEntity);
             var property = type.GetProperty(orderByProperty);
             var parameter = Expression.Parameter(type, "orderthenparam");

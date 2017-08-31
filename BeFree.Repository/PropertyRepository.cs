@@ -30,7 +30,6 @@ namespace BeFree.Repository
         {
             if (filter == null)
             {
-                //return Mapper.Map<IEnumerable<PropertyPOCO>>(await Repository.GetWhere<Property>().Take(99).ToListAsync());
                 filter = new Filter()
                 {
                     PageSize = 10,
@@ -41,7 +40,7 @@ namespace BeFree.Repository
                 .OrderBy(o => o.name)
                 .Skip(filter.Skip)
                 .Take(filter.Page);
-            return Mapper.Map<IEnumerable<PropertyPOCO>>(await filtered.ToListAsync());
+            return Mapper.Map<IEnumerable<IProperty>>(await filtered.ToListAsync());
         }
 
         public virtual async Task<IProperty> GetAsync(Guid id)
@@ -59,7 +58,7 @@ namespace BeFree.Repository
                         orderby r.ratedon descending
                         select p).Take(n);
 
-            return Mapper.Map<IEnumerable<PropertyPOCO>>(await last.ToListAsync());
+            return Mapper.Map<IEnumerable<IProperty>>(await last.ToListAsync());
         }
         /// <summary>
         /// Returns top n properties ordered by AverageRating
