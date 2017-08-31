@@ -39,3 +39,20 @@
       <button (click)="nextPage()">Next <span aria-hidden="true">&rarr;</span></button></li>
   </ul>
 </nav>
+
+<button type="button" (click)="modal1.show()">test</button>
+
+<app-review-modal #modal1>
+  <div class="app-review-modal-header">
+    header
+  </div>
+  <div class="app-review-modal-body">
+    Whatever content you like, form fields, anything
+    <input type="text">
+  </div>
+  <div class="app-review-modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal1.hide()">Close</button>
+    <button type="button" class="btn btn-default" (click)="modal2.show()">Show modal 2</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+  </div>
+</app-review-modal>

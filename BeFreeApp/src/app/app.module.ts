@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopPropertiesComponent } from "./top-properties/top-properties.component";
 import { LatestReviewsComponent } from './latest-reviews/latest-reviews.component';
 import { PropertyDetailsComponent } from './property-details/property-details.component';
+import { ReviewModalComponent } from './review-modal/review-modal.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PropertyDetailsComponent } from './property-details/property-details.co
     AlertComponent,
     TopPropertiesComponent,
     LatestReviewsComponent,
-    PropertyDetailsComponent
+    PropertyDetailsComponent,
+    ReviewModalComponent
   ],
   imports: [
     BrowserModule,

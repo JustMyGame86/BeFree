@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BeFree.Repository
 {
-    class PropertyRepository : IPropertyRepository
+    public class PropertyRepository : IPropertyRepository
     {
         protected IRepository Repository { get; private set; }
 
@@ -30,9 +30,17 @@ namespace BeFree.Repository
         {
             if (filter == null)
             {
-                return Mapper.Map<IEnumerable<PropertyPOCO>>(await Repository.GetWhere<Property>().Take(99).ToListAsync());
+                //return Mapper.Map<IEnumerable<PropertyPOCO>>(await Repository.GetWhere<Property>().Take(99).ToListAsync());
+                filter = new Filter()
+                {
+                    PageSize = 10,
+                    Page = 1
+                };
             }
-            var filtered = Repository.GetWhere<Property>().Skip(filter.Skip).Take(filter.Page);
+            var filtered = Repository.GetWhere<Property>()
+                .OrderBy(o => o.name)
+                .Skip(filter.Skip)
+                .Take(filter.Page);
             return Mapper.Map<IEnumerable<PropertyPOCO>>(await filtered.ToListAsync());
         }
 
